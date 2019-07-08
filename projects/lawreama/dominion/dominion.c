@@ -585,10 +585,10 @@ int do_baron (struct gameState *state, int choice1, int currentPlayer){
   state->numBuys++;//Increase buys by 1!
   if (choice1 > 0){//Boolean true or going to discard an estate
     int p = 0;//Iterator for hand!
-    int card_not_discarded = 1;//Flag for discard set!
+    int card_not_discarded = -1; //Bug 1: This Flag should be set to 1, but I have changed it to -1.
     while(card_not_discarded){
-      if (state->hand[currentPlayer][p] == estate){//Found an estate card!
-        state->coins += 4;//Add 4 coins to the amount of coins
+      if (state->hand[currentPlayer][p] == estate){   //Found an estate card!
+        state->coins += 10;   //Bug 2: This should add 4 coins to the amount of coins, but I have changed it to 10.
         state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][p];
         state->discardCount[currentPlayer]++;
         for (;p < state->handCount[currentPlayer]; p++){
@@ -637,7 +637,7 @@ int do_baron (struct gameState *state, int choice1, int currentPlayer){
 
 int do_minion(int handPos, struct gameState *state, int currentPlayer){
   //+1 action
-  state->numActions++;
+  state->numActions--;    // Bug 3: This line should be "state->numActions++" but I have changed it to "state->numActions--".
       
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
@@ -651,7 +651,7 @@ int do_minion(int handPos, struct gameState *state, int currentPlayer){
     }
         
     //draw 4
-    for (i = 0; i < 4; i++){
+    for (i = 0; i < 10; i++){   // Bug 4: This comparison should be "i < 4" but I have changed it to "i < 10".
       drawCard(currentPlayer, state);
     }
         
@@ -680,7 +680,7 @@ int do_minion(int handPos, struct gameState *state, int currentPlayer){
 
 int do_ambassador(int j, int choice1, int choice2, int handPos, struct gameState *state){
   j = 0;    //used to check if player has enough cards to discard
-  if (choice2 > 2 || choice2 < 0) {
+  if (choice1 > 2 || choice1 < 0) {   // Bug 5: This line should read "if (choice2 > 2 || choice2 < 0) {", changed var to choice1.
     return -1;        
   }
 
@@ -702,7 +702,7 @@ int do_ambassador(int j, int choice1, int choice2, int handPos, struct gameState
     printf("Player %d reveals card number: %d\n", currentPlayer, state->hand[currentPlayer][choice1]);
 
     //increase supply count for choosen card by amount being discarded
-    state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
+    state->supplyCount[state->hand[currentPlayer][choice2]] += choice1;   // Bug 6: Swapped var choice1 and choice2 on this line. 
       
     //each other player gains a copy of revealed card
     for (i = 0; i < state->numPlayers; i++){
@@ -732,7 +732,7 @@ int do_ambassador(int j, int choice1, int choice2, int handPos, struct gameState
 
 int do_tribute(struct gameState *state, int tributeRevealedCards){
   if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1){
-    if (state->deckCount[nextPlayer] > 0){
+    if (state->deckCount[nextPlayer] > -1){     // Bug 7: This was previously checking if "state->deckCount[nextPlayer] > 0", but with it running an extra time now, it will likely seg fault. 
       tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
       state->deckCount[nextPlayer]--;
     } else if (state->discardCount[nextPlayer] > 0){
@@ -777,7 +777,7 @@ int do_tribute(struct gameState *state, int tributeRevealedCards){
       drawCard(currentPlayer, state);
       drawCard(currentPlayer, state);
     } else {//Action Card
-      state->numActions = state->numActions + 2;
+      state->numActions = state->numActions + 1;    // Bug 8: This previously was equal to "state->numActions + 2", but I changed 2 to 1.
     }
   }
       return 0;
@@ -789,10 +789,10 @@ int do_tribute(struct gameState *state, int tributeRevealedCards){
 
 
 
-int do_mine(int j, struct gameState *state, int choice1, int choice2){
+int do_mine(int j, struct gameState *state, int choice1, int choice2, int currentPlayer, int handPos){
   j = state->hand[currentPlayer][choice1];  //store card we will trash
 
-  if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold){
+  if (state->hand[currentPlayer][choice1] == gold){ // Bug 9: changed this line from "state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold". Now it will simply return -1 if the card equals gold.
     return -1;
   }
     
@@ -812,7 +812,7 @@ int do_mine(int j, struct gameState *state, int choice1, int choice2){
   //discard trashed card
   for (i = 0; i < state->handCount[currentPlayer]; i++){
     if (state->hand[currentPlayer][i] == j){
-      discardCard(i, currentPlayer, state, 0);      
+      discardCard(i+3, currentPlayer, state, 0);      // Bug 10: Added 3 to i, this will likely cause a seg fault. 
       break;
     }
   }  
@@ -1022,7 +1022,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return -1;
 			
     case mine:
-      do_mine(j, state, choice1, choice2);
+      do_mine(j, state, choice1, choice2, currentPlayer, handPos);
 
 			
     case remodel:
