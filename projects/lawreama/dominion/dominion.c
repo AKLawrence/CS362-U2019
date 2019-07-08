@@ -588,7 +588,7 @@ int do_baron (struct gameState *state, int choice1, int currentPlayer){
     int card_not_discarded = -1; //Bug 1: This Flag should be set to 1, but I have changed it to -1.
     while(card_not_discarded){
       if (state->hand[currentPlayer][p] == estate){   //Found an estate card!
-        state->coins += 10;   //Bug 2: This should add 4 coins to the amount of coins, but I have changed it to 10.
+        state->coins += 4;   
         state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][p];
         state->discardCount[currentPlayer]++;
         for (;p < state->handCount[currentPlayer]; p++){
@@ -610,7 +610,8 @@ int do_baron (struct gameState *state, int choice1, int currentPlayer){
             isGameOver(state);
           }
         }
-        card_not_discarded = 0;//Exit the loop
+        //Exit the loop
+        card_not_discarded--; //Bug 2: This previously was set to equal 0. This will decrement ad infinitum.
       }
             
       else{
@@ -730,7 +731,7 @@ int do_ambassador(int j, int choice1, int choice2, int handPos, struct gameState
 
 
 
-int do_tribute(struct gameState *state, int tributeRevealedCards){
+int do_tribute(struct gameState *state, int tributeRevealedCards[2]){
   if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1){
     if (state->deckCount[nextPlayer] > -1){     // Bug 7: This was previously checking if "state->deckCount[nextPlayer] > 0", but with it running an extra time now, it will likely seg fault. 
       tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
