@@ -36,7 +36,7 @@ int main() {
 	int bonus = 0;
 	int player = 0;
 	int i = 0;
-	int numPlayers = 2;
+	int numPlayers = 0;
 
 	int cards[10] = { gardens, mine, smithy, tribute, great_hall, steward, cutpurse, embargo, outpost, salvager};
 
@@ -47,6 +47,9 @@ int main() {
 
 		// int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)
 		int random = rand() % 100;
+		numPlayers = rand() % 10;
+		player = rand() % numPlayers;
+
 		initializeGame(numPlayers, cards, random, &state);
 
 		//Run our tests on the copy of our gameState, testState.
