@@ -821,7 +821,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case baron:
       /* Call baron function */
       playBaron(choice1, currentPlayer, state);
-      return 0;
+      //return 0;
 
     case great_hall:
       //+1 Card
@@ -837,7 +837,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case minion:
       //Call minion function
       playMinion(choice1, choice2, state, currentPlayer, handPos);
-      return 0;
+      //return 0;
 
     case steward:
       if (choice1 == 1)
@@ -864,7 +864,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
     case tribute:
       playTribute(state, nextPlayer, currentPlayer);
-      return 0;
+      //return 0;
 
     case ambassador:
       return playAmbassador(choice1, choice2, state, handPos, currentPlayer);
@@ -1105,7 +1105,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 * *               decremented, and the cards in hand are incremented. If the
 * *
 ******************************************************************************/
-void playBaron(int choice1, int currentPlayer, struct gameState *state)
+int playBaron(int choice1, int currentPlayer, struct gameState *state)
 {
   //Increase buys by 1!
   state->numBuys++;
@@ -1164,6 +1164,7 @@ void playBaron(int choice1, int currentPlayer, struct gameState *state)
         p++;
       }
     }
+    return 0;
   }
 
   //Player chose to gain an estate
@@ -1206,7 +1207,7 @@ void gainEstate(struct gameState *state, int currentPlayer)
 * *               than four, their hand is discarded and replaced with four
 * *               new cards.
 ******************************************************************************/
-void playMinion(int choice1, int choice2, struct gameState *state, int currentPlayer, int handPos)
+int playMinion(int choice1, int choice2, struct gameState *state, int currentPlayer, int handPos)
 {
   //Iterators for loops
   int i, j;
@@ -1260,6 +1261,7 @@ void playMinion(int choice1, int choice2, struct gameState *state, int currentPl
       }
     }
   }
+  return 0;
 }
 
 
@@ -1358,7 +1360,7 @@ int playAmbassador(int choice1, int choice2, struct gameState *state, int handPo
 * * player receives two Treasure. If it was a Victory Card, the player gets to
 * * draw two extra cards.
 ******************************************************************************/
-void playTribute(struct gameState *state, int nextPlayer, int currentPlayer)
+int playTribute(struct gameState *state, int nextPlayer, int currentPlayer)
 {
     //For storing revealed cards
     int tributeRevealedCards[2] = {-1, -1};
@@ -1450,6 +1452,7 @@ void playTribute(struct gameState *state, int nextPlayer, int currentPlayer)
       state->numActions = state->numActions + 2;
     }
   }
+  return 0;
 }
 
 
