@@ -39,7 +39,7 @@ int main() {
 	int random = rand() % 100;
 	int result = 0;
 	int currentPlayer = 0;
-	int j = 0;
+	//int j = 0;
 
 	int cards[10] = { gardens, ambassador, smithy, village, great_hall, steward, cutpurse, embargo, outpost, salvager};
 
@@ -48,15 +48,15 @@ int main() {
 
 	assert(result == 0);
 
-	printf("Testing the do_ambassador() function.\n");
+	printf("Testing the playAmbassador() function.\n");
 
 	for (choice2 = 0; choice2 > 3; choice2++){
-		result = do_ambassador(j, choice1, choice2, handPos, &testState, currentPlayer);
+		result = playAmbassador(choice1, choice2, &testState, handPos, currentPlayer);
 		assert(result == 0);
 	}
 
 
-	printf("The do_ambassador() function worked.\n");
+	printf("The playAmbassador() function worked.\n");
 
 	return 0;
 

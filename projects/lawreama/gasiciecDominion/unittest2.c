@@ -49,21 +49,21 @@ int main() {
 
 	assert(result == 0);
 
-	printf("Testing the do_minion() function.\n");
+	printf("Testing the playMinion() function.\n");
 
 
 	currentPlayer = whoseTurn(&testState);
 
 
-	do_minion(handPos, &testState, currentPlayer, choice1, choice2);
+	result = playMinion(choice1, choice2, &testState, currentPlayer, handPos);
 	assert(result == 0);
 
 
 	choice1 = 2;
-	do_minion(handPos, &testState, currentPlayer, choice1);
+	result = playMinion(choice1, choice2, &testState, currentPlayer, handPos);
 	assert(result == 0);
 
-	printf("The do_minion() function worked.\n");
+	printf("The playMinion() function worked.\n");
 
 	return 0;
 

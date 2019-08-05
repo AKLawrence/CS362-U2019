@@ -39,7 +39,7 @@ int main() {
 	int random = rand() % 100;
 	int result = 0;
 	int currentPlayer = 0;
-	int j = 0;
+	//int j = 0;
 	int numPlayers = 2;
 
 
@@ -51,13 +51,13 @@ int main() {
 
 	assert(result == 0);
 
-	printf("Testing the do_mine() function.\n");
+	printf("Testing the playMine() function.\n");
 
 	for(currentPlayer = 0; currentPlayer < numPlayers; currentPlayer++){
 		if(testState.hand[currentPlayer][choice1] == copper || testState.hand[currentPlayer][choice1] == silver || testState.hand[currentPlayer][choice1] == gold){
 			// runs with choice2 equal to 4 for copper, 5 for silver, and 6 for gold. 
 			for (choice2 = 4; choice2 < 7; choice2++){
-				do_mine(j, &testState, choice1, choice2, currentPlayer, handPos);
+				result = playMine(choice1, choice2, &testState, currentPlayer, handPos);
 				assert(result == 0);
 			}
 		}
@@ -65,7 +65,7 @@ int main() {
 
 
 
-	printf("The do_mine() function worked.\n");
+	printf("The playMine() function worked.\n");
 
 	return 0;
 	

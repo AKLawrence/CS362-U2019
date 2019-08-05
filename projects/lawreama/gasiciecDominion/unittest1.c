@@ -44,19 +44,19 @@ int main() {
 
 	assert(result == 0);
 
-	printf("Testing the do_baron() function.\n");
+	printf("Testing the playBaron() function.\n");
 
 	// int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 	// Baron's choice1 is boolean for discard of estate. 0 or less means we do not discard an estate.
-	result = do_baron(&testState, choice1, currentPlayer);
+	result = playBaron(choice1, currentPlayer, &testState);
 	assert(result == 0);
 
 	choice1 = 0;
-	result = do_baron(&testState, choice1, currentPlayer);
+	result = playBaron(choice1, currentPlayer, &testState);
 
 	assert(result == 0);
 
-	printf("The do_baron() function worked.\n");
+	printf("The playBaron() function worked.\n");
 
 	return 0;
 }

@@ -35,7 +35,7 @@
 int main() {
 
 	struct gameState testState;
-	int tributeRevealedCards[2] = {-1, -1};
+	//int tributeRevealedCards[2] = {-1, -1};
 	int random = rand() % 100;
 	int nextPlayer = 0;
 	int currentPlayer = 1;
@@ -48,13 +48,13 @@ int main() {
 
 	assert(result == 0);
 
-	printf("Testing the do_tribute() function.\n");
+	printf("Testing the playTribute() function.\n");
 
-	do_tribute(&testState, tributeRevealedCards, nextPlayer, currentPlayer);
+	result = playTribute(&testState, nextPlayer, currentPlayer);
 
 	assert(result == 0);
 
-	printf("The do_tribute() function worked.\n");
+	printf("The playTribute() function worked.\n");
 
 	return 0;
 
