@@ -28,7 +28,7 @@ int main() {
 
 	struct gameState state, testState;
 	int handPos = 0;
-	int choice1 = 1;  /* choice1:  1 = +2 coin, 2 = redraw */
+	int choice1 = 0;  /* choice1:  1 = +2 coin, 2 = redraw */
 	int choice2 = 0;
 	int choice3 = 0;
 	int bonus = 0;
@@ -48,9 +48,10 @@ int main() {
 		printf("\n***********Testing: MINION CARD. Attempt: %d of 100.***********\n", i+1);
 
 		// int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)
-		int random = rand() % 100;
-		numPlayers = rand() % 10;
-		player = rand() % numPlayers;
+		random = rand() % 100;
+		numPlayers = rand() % (3) + 2; // gives us 2, 3, or 4 players.
+		player = floor(rand() % numPlayers);
+		choice1 = rand() % (3) + 1;		// gives us either 1 or 2.
 
 		initializeGame(numPlayers, cards, random, &state);
 
@@ -58,8 +59,6 @@ int main() {
 		memcpy(&testState, &state, sizeof(struct gameState));
 		cardEffect(minion, choice1, choice2, choice3, &state, handPos, &bonus);
 
-		//Let whoseTurn() generate which player
-		player = whoseTurn(&state);
 
 		// check their hand, to see if they received card
 		if(state.hand[player][testState.handCount[player]-1] != -1){
