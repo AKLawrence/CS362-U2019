@@ -18,7 +18,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <math.h>
 
 
 
@@ -40,32 +40,29 @@ int main() {
 
 	for(i = 0; i < 100; i++){
 
-		if(i >= 49){
-			choice1 = 1;
-		}
-
 		printf("\n***********Testing: BARON CARD. Attempt: %d of 100.***********\n", i+1);
 
 		// int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)
 		random = rand() % 100;
-		numPlayers = rand() % 2;
-		player = rand() % numPlayers;
+		numPlayers = rand() % (3) + 2; // gives us 2, 3, or 4 players.
+		player = floor(rand() % numPlayers);
+		choice1 = rand() % (2) + 0;		// gives us either 0 or 1.
 
 		initializeGame(numPlayers, cards, random, &state);
 
-		printf("\nGet here?\n");
+		//printf("\nGet here?\n");
 
 		//Run our tests on the copy of our gameState, testState.
 		memcpy(&testState, &state, sizeof(struct gameState));
 
-		printf("\nHow aboout here?\n");
+		//printf("\nHow aboout here?\n");
 		
 		cardEffect(baron, choice1, choice2, choice3, &state, handPos, &bonus);
 
 
 
 		//Let whoseTurn() generate which player
-		player = whoseTurn(&state);
+		//player = whoseTurn(&state);
 
 		// check their hand, to see if they received card
 		if(state.hand[player][testState.handCount[player]-1] != -1){
