@@ -48,7 +48,7 @@ int main() {
 		random = rand() % 100;
 		numPlayers = rand() % (3) + 2; // gives us 2, 3, or 4 players.
 		player = floor(rand() % numPlayers);
-		choice1 = rand() % (3) + 1;		// gives us either 1 or 2.
+		choice1 = rand() % (2) + 1;		// gives us either 1 or 2.
 
 		initializeGame(numPlayers, cards, random, &state);
 
