@@ -22,7 +22,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <math.h>
 
 
 
@@ -47,8 +47,8 @@ int main() {
 
 		// int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)
 		int random = rand() % 100;
-		numPlayers = rand() % 10;
-		player = rand() % numPlayers;
+		numPlayers = rand() % (3) + 2; // gives us 2, 3, or 4 players.
+		player = floor(rand() % numPlayers);
 
 		initializeGame(numPlayers, cards, random, &state);
 
