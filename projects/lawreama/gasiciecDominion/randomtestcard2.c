@@ -20,7 +20,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <math.h>
 
 
 
@@ -35,6 +35,7 @@ int main() {
 	int player = 0;
 	int i = 0;
 	int numPlayers = 0;
+	int random = 0;
 
 
 	int cards[10] = { gardens, mine, smithy, minion, great_hall, steward, cutpurse, embargo, outpost, salvager};
