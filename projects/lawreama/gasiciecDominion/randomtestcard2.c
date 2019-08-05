@@ -41,10 +41,6 @@ int main() {
 
 	for(i = 0; i < 100; i++){
 
-		if(i >= 49){
-			choice1 = 2;
-		}
-
 		printf("\n***********Testing: MINION CARD. Attempt: %d of 100.***********\n", i+1);
 
 		// int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)
