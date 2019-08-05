@@ -33,6 +33,7 @@ int main() {
 	int player = 0;
 	int i = 0;
 	int numPlayers = 0;
+	int random = 0;
 
 	int cards[10] = { gardens, mine, smithy, baron, great_hall, steward, cutpurse, estate, outpost, salvager};
 
@@ -46,15 +47,22 @@ int main() {
 		printf("\n***********Testing: BARON CARD. Attempt: %d of 100.***********\n", i+1);
 
 		// int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)
-		int random = rand() % 100;
-		numPlayers = rand() % 10;
+		random = rand() % 100;
+		numPlayers = rand() % 2;
 		player = rand() % numPlayers;
 
 		initializeGame(numPlayers, cards, random, &state);
 
+		printf("\nGet here?\n");
+
 		//Run our tests on the copy of our gameState, testState.
 		memcpy(&testState, &state, sizeof(struct gameState));
+
+		printf("\nHow aboout here?\n");
+		
 		cardEffect(baron, choice1, choice2, choice3, &state, handPos, &bonus);
+
+
 
 		//Let whoseTurn() generate which player
 		player = whoseTurn(&state);
