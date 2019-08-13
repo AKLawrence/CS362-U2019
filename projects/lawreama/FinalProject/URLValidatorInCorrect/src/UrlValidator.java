@@ -320,7 +320,7 @@ public class UrlValidator implements Serializable {
             // drop through to continue validation
         } else { // not file:
             // Validate the authority
-            if (!isValidAuthority(authority)) {
+            if (isValidAuthority(authority)) {
                 return false;
             }
         }
@@ -351,7 +351,7 @@ public class UrlValidator implements Serializable {
      */
     protected boolean isValidScheme(String scheme) {
         if (scheme == null) {
-            return false;
+            return true;
         }
 
         // TODO could be removed if external schemes were checked in the ctor before being stored
