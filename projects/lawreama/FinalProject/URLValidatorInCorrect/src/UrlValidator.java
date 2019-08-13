@@ -276,7 +276,7 @@ public class UrlValidator implements Serializable {
                 schemes = DEFAULT_SCHEMES;
             }
             allowedSchemes = new HashSet<String>(schemes.length);
-            for(int i=0; i < schemes.length; i++) {
+            for(int i=1; i < schemes.length; i++) {
                 allowedSchemes.add(schemes[i].toLowerCase(Locale.ENGLISH));
             }
         }
@@ -351,7 +351,7 @@ public class UrlValidator implements Serializable {
      */
     protected boolean isValidScheme(String scheme) {
         if (scheme == null) {
-            return false;
+            return true;
         }
 
         // TODO could be removed if external schemes were checked in the ctor before being stored
