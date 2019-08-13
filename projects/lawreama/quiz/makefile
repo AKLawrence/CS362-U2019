@@ -1,7 +1,7 @@
 CFLAGS= -Wall -fpic -coverage -lm -std=c99
 
 testme: 
-	gcc -c testme.c -g $(CFLAGS)
+	gcc -o testme testme.c -g $(CFLAGS)
 
 
 clean:

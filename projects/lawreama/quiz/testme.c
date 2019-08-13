@@ -7,7 +7,7 @@ char inputChar()
 {
     // TODO: rewrite this function
   char randomchar = 'A' + (rand() % 26);
-    return 'randomchar';
+    return randomchar;
 }
 
 char *inputString()
