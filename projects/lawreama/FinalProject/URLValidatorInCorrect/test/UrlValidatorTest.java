@@ -604,6 +604,7 @@ protected void setUp() {
 	            }
 	   }   
    }
+   }
 
    //-------------------- Test data for creating a composite URL
    /**
