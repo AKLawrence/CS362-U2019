@@ -502,8 +502,129 @@ protected void setUp() {
        assertTrue(validator.isValid("http://example.com/serach?address=Main+Avenue"));
    }
    
-   //Unit Test for URLs
-   public void unitTest() { 
+<<<<<<< HEAD
+
+   
+   //Random test for URLs
+   public void randomTest(Object[] testObjects, long options) {
+	   UrlValidator urlVal = new UrlValidator(null, null, options);
+=======
+   //Random test for URLs;  modified from testIsValid()
+   public void randomTest(Object[] testUrlParts) {
+	   UrlValidator urlVal = new UrlValidator();
+>>>>>>> 714818e8c5691b6133d7bad90c42566d7176ea15
+	   
+	   //Create instance of Random class
+	   //Source:  https://www.geeksforgeeks.org/generating-random-numbers-in-java/
+	   Random rand = new Random();
+	   
+	   
+	   
+	   //Run tests 
+	   for(int i = 0; i < 100; i++) {
+		   //Set up buffer to build URL
+		   StringBuilder testBuffer = new StringBuilder();
+		   
+		   boolean expected = true;
+		   
+		   int statusPerLine = 60;
+		   int printed = 0;
+		   if (printIndex)  {
+		         statusPerLine = 6;
+		      }
+		   
+		  
+		   //Get all testUrlScheme items
+		   ResultPair[] part1 = (ResultPair[]) testUrlParts[0];
+
+			   
+		   //Random index for testUrlScheme
+		   int randNum = rand.nextInt(8) - 1; 
+		   
+		   //Add random testUrlScheme to URL
+           testBuffer.append(part1[randNum].item);
+           expected &= part1[randNum].valid;
+			   
+           
+		   //Get all testUrlAuthority items
+		   ResultPair[] part2 = (ResultPair[]) testUrlParts[1];
+		   
+		   
+		   //Random index for testUrlAuthority
+		   randNum = rand.nextInt(20) - 1;
+		   
+		   //Add random testUrlAuthority to URL
+           testBuffer.append(part2[randNum].item);
+           expected &= part2[randNum].valid;
+			   
+           
+		   //Get all testUrlPort items
+		   ResultPair[] part3 = (ResultPair[]) testUrlParts[2];
+			   
+		   //Random index for testUrlPort
+		   randNum = rand.nextInt(9) - 1; 
+		   
+		   //Add random testUrlPort to URL
+           testBuffer.append(part3[randNum].item);
+           expected &= part3[randNum].valid;
+			   
+           
+		   //Get all testPath items
+		   ResultPair[] part4 = (ResultPair[]) testUrlParts[3];
+		   
+		   //Random index for testPath
+		   randNum = rand.nextInt(10) - 1;
+		   
+		   //Add random testUrlAuthority to URL
+           testBuffer.append(part4[randNum].item);
+           expected &= part4[randNum].valid;
+           
+			   
+		   //Get all testUrlQuery items
+		   ResultPair[] part5 = (ResultPair[]) testUrlParts[4];
+			   
+		   //Random index for testUrlQuery
+		   randNum = rand.nextInt(3) - 1; 
+		   
+		   //Add random testUrlAuthority to URL
+           testBuffer.append(part5[randNum].item);
+           expected &= part5[randNum].valid;
+           
+           
+	       String url = testBuffer.toString();
+	       boolean result = urlVal.isValid(url);
+	       assertEquals(url, expected, result);
+	       if (printStatus) {
+	            if (printIndex) {
+	               System.out.print(testPartsIndextoString());
+	            } 
+	            
+	            else {
+	               if (result == expected) {
+	                  System.out.print('.');
+	               } 
+	               
+	               else {
+	                  System.out.print('X');
+	               }
+	            }
+	            
+	            printed++;
+	            
+	            if (printed == statusPerLine) {
+	               System.out.println();
+	               printed = 0;
+	            }
+	   }   
+   }
+   }
+
+
+
+
+
+//Unit Test for URLs
+public void unitTest() { 
 	   UrlValidator validator = new UrlValidator();
 	   try {
 		   FileReader fr = new FileReader("URLS.txt"); 
@@ -535,64 +656,12 @@ protected void setUp() {
 	   } catch (IOException e) {
 		   e.printStackTrace();
 	   }
-   } 
-   
-   
-   
-   //Random test for URLs
-   public void randomTest(Object[] testObjects, long options) {
-	   UrlValidator urlVal = new UrlValidator(null, null, options);
-	   
-	   //Create instance of Random class
-	   //Source:  https://www.geeksforgeeks.org/generating-random-numbers-in-java/
-	   Random rand = new Random();
-	   
-	   for(int i = 0; i < 100; i++) {
-		   //Set up buffer to build URL
-		   StringBuilder testBuffer = new StringBuilder();
-		   
-		   boolean expected = true;
-		   
-		   //Random number for 
-		   int randNum = rand.nextInt(testObjects.length); 
-		   
-	   }
-	   
-	   
-	   do {
-	          StringBuilder testBuffer = new StringBuilder();
-	         boolean expected = true;
-	         for (int testPartsIndexIndex = 0; testPartsIndexIndex < testPartsIndex.length; ++testPartsIndexIndex) {
-	            int index = testPartsIndex[testPartsIndexIndex];
-	            ResultPair[] part = (ResultPair[]) testObjects[testPartsIndexIndex];
-	            testBuffer.append(part[index].item);
-	            expected &= part[index].valid;
-	         }
-	         String url = testBuffer.toString();
-	         boolean result = urlVal.isValid(url);
-	         assertEquals(url, expected, result);
-	         if (printStatus) {
-	            if (printIndex) {
-	               System.out.print(testPartsIndextoString());
-	            } else {
-	               if (result == expected) {
-	                  System.out.print('.');
-	               } else {
-	                  System.out.print('X');
-	               }
-	            }
-	            printed++;
-	            if (printed == statusPerLine) {
-	               System.out.println();
-	               printed = 0;
-	            }
-	         }
-	      } while (incrementTestPartsIndex(testPartsIndex, testObjects));
-	      if (printStatus) {
-	         System.out.println();
-	      }
-	   
-   }
+} 
+
+
+
+
+
 
    //-------------------- Test data for creating a composite URL
    /**
