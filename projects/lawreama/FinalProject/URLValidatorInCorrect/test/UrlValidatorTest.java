@@ -17,7 +17,7 @@
 
 import junit.framework.TestCase;
 
-import static org.junit.Assert.assertTrue;
+//import static org.junit.Assert.*;
 import java.io.IOException; 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -622,26 +622,29 @@ public void unitTest() {
 		   FileReader fr = new FileReader("URLS.txt"); 
 		   BufferedReader br = new BufferedReader(fr);
 		   
-	       char c[]=new char[100]; 
+	       //char c[]=new char[100]; 
 	       String s;
 
 	       if(br.ready()) {  
 	           System.out.println(br.readLine()); 
+	           while ((s = br.readLine()) != null) {
 	 
-	           //read(char c[], int off, int len) 
-	           br.read(c); 
+	        	   //read(char c[], int off, int len) 
+	        	   //br.read(c); 
 	           
-	           s = String.valueOf(c); 
+	        	   //s = String.valueOf(c); 
 	           
-	           System.out.print(s); 
-	           assertTrue( validator.isValid(s) );
+	        	   System.out.print("Unit Testing the isValid() method on URL:  " + s); 
+	        	   assertTrue( validator.isValid(s) );
 	           
-	           System.out.println(); 
+	        	   System.out.print("Unit Test Successful on URL:  " + s); 
+	        	   System.out.println(); 
 	 
-	           //reset() BufferedReader for the next line
-	           br.reset(); 
-
+	        	   //reset() BufferedReader for the next line
+	        	   br.reset(); 
+	           }
 	       } 
+	       br.close();
 	   } catch (IOException e) {
 		   e.printStackTrace();
 	   }
