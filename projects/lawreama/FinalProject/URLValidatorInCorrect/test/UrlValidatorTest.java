@@ -16,6 +16,11 @@
  */
 
 import junit.framework.TestCase;
+
+import static org.junit.Assert.assertTrue;
+import java.io.IOException; 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Random;
 
 
@@ -496,6 +501,43 @@ protected void setUp() {
        assertTrue(validator.isValid("http://example.com/serach?address=Main%20Avenue"));
        assertTrue(validator.isValid("http://example.com/serach?address=Main+Avenue"));
    }
+   
+   //Unit Test for URLs
+   public void unitTest() { 
+	   UrlValidator validator = new UrlValidator();
+	   try {
+		   FileReader fr = new FileReader("URLS.txt"); 
+		   BufferedReader br = new BufferedReader(fr);
+		   
+	       char c[]=new char[100]; 
+	       String s;
+
+	       if(br.ready()) {  
+	           System.out.println(br.readLine()); 
+	 
+	           //read(char c[], int off, int len) 
+	           br.read(c); 
+	           
+	           s = String.valueOf(c); 
+	           
+	           System.out.print(s); 
+	           assertTrue( validator.isValid(s) );
+	           
+	           //for (int i = 0; i <100 ; i++) { 
+	           //	System.out.print(s); 
+	           //} 
+	           System.out.println(); 
+	 
+	           //reset() BufferedReader for the next line
+	           br.reset(); 
+
+	       } 
+	   } catch (IOException e) {
+		   e.printStackTrace();
+	   }
+   } 
+   
+   
    
    //Random test for URLs
    public void randomTest(Object[] testObjects, long options) {
