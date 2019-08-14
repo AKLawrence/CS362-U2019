@@ -507,7 +507,7 @@ protected void setUp() {
    
 
    //Random test for URLs;  modified from testIsValid()
-   public void testrandomTester(Object[] testUrlParts) {
+   public void testRandomTester() {
 	   UrlValidator urlVal = new UrlValidator();
 	   
 	   //Create instance of Random class
@@ -649,6 +649,7 @@ protected void setUp() {
 	       } 
 	       br.close();
 	   } catch (IOException e) {
+		   
 		   e.printStackTrace();
 	   }
    } 
