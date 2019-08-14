@@ -532,7 +532,7 @@ protected void setUp() {
 
 			   
 		   //Random index for testUrlScheme
-		   int randNum = rand.nextInt(8) - 1; 
+		   int randNum = rand.nextInt(8); 
 		   
 		   //Add random testUrlScheme to URL
            testBuffer.append(part1[randNum].item);
@@ -544,7 +544,7 @@ protected void setUp() {
 		   
 		   
 		   //Random index for testUrlAuthority
-		   randNum = rand.nextInt(20) - 1;
+		   randNum = rand.nextInt(20);
 		   
 		   //Add random testUrlAuthority to URL
            testBuffer.append(part2[randNum].item);
@@ -555,7 +555,7 @@ protected void setUp() {
 		   ResultPair[] part3 = (ResultPair[]) testUrlParts[2];
 			   
 		   //Random index for testUrlPort
-		   randNum = rand.nextInt(9) - 1; 
+		   randNum = rand.nextInt(9); 
 		   
 		   //Add random testUrlPort to URL
            testBuffer.append(part3[randNum].item);
@@ -566,7 +566,7 @@ protected void setUp() {
 		   ResultPair[] part4 = (ResultPair[]) testUrlParts[3];
 		   
 		   //Random index for testPath
-		   randNum = rand.nextInt(10) - 1;
+		   randNum = rand.nextInt(10);
 		   
 		   //Add random testUrlAuthority to URL
            testBuffer.append(part4[randNum].item);
@@ -577,7 +577,7 @@ protected void setUp() {
 		   ResultPair[] part5 = (ResultPair[]) testUrlParts[4];
 			   
 		   //Random index for testUrlQuery
-		   randNum = rand.nextInt(3) - 1; 
+		   randNum = rand.nextInt(3); 
 		   
 		   //Add random testUrlAuthority to URL
            testBuffer.append(part5[randNum].item);
