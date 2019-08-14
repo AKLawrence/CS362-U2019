@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="URLValidatorInCorrect/src"/>
+	<classpathentry kind="src" path="URLValidatorInCorrect/test"/>
+	<classpathentry kind="lib" path="/Users/amandalawrence/Downloads/jar_files/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="/Users/amandalawrence/Downloads/jar_files/junit-4.13-beta-3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
