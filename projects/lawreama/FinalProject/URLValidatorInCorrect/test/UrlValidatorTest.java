@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Random;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 /**
@@ -622,7 +624,7 @@ protected void setUp() {
    public void testUnitTester() { 
 	   UrlValidator validator = new UrlValidator();
 	   try {
-		   FileReader fr = new FileReader("URLS.txt"); 
+		   FileReader fr = new FileReader("URLValidatorInCorrect/test/URLS.txt"); 
 		   BufferedReader br = new BufferedReader(fr);
 		   
 	       //char c[]=new char[100]; 
@@ -649,7 +651,9 @@ protected void setUp() {
 	       } 
 	       br.close();
 	   } catch (IOException e) {
-		   
+		   Path current = Paths.get(".");
+		   String x = current.toAbsolutePath().toString();
+		   System.out.println("Current dir:" + x);
 		   e.printStackTrace();
 	   }
    } 
