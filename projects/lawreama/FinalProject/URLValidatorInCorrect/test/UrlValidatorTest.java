@@ -502,17 +502,10 @@ protected void setUp() {
        assertTrue(validator.isValid("http://example.com/serach?address=Main+Avenue"));
    }
    
-<<<<<<< HEAD
 
-   
-   //Random test for URLs
-   public void randomTest(Object[] testObjects, long options) {
-	   UrlValidator urlVal = new UrlValidator(null, null, options);
-=======
    //Random test for URLs;  modified from testIsValid()
    public void randomTest(Object[] testUrlParts) {
 	   UrlValidator urlVal = new UrlValidator();
->>>>>>> 714818e8c5691b6133d7bad90c42566d7176ea15
 	   
 	   //Create instance of Random class
 	   //Source:  https://www.geeksforgeeks.org/generating-random-numbers-in-java/
@@ -622,7 +615,6 @@ protected void setUp() {
 
 
 
-
 //Unit Test for URLs
 public void unitTest() { 
 	   UrlValidator validator = new UrlValidator();
@@ -644,9 +636,6 @@ public void unitTest() {
 	           System.out.print(s); 
 	           assertTrue( validator.isValid(s) );
 	           
-	           //for (int i = 0; i <100 ; i++) { 
-	           //	System.out.print(s); 
-	           //} 
 	           System.out.println(); 
 	 
 	           //reset() BufferedReader for the next line
