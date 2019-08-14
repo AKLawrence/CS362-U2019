@@ -373,6 +373,9 @@ protected void setUp() {
    }
 
    public void testValidateUrl() {
+	   //UrlValidator validator = new UrlValidator();
+	   //boolean jeff = validator.isValid("http://xn--h1acbxfam.idn.icann.org/");
+	   //System.out.println(jeff);
       assertTrue(true);
    }
 
@@ -504,7 +507,7 @@ protected void setUp() {
    
 
    //Random test for URLs;  modified from testIsValid()
-   public void randomTest(Object[] testUrlParts) {
+   public void testrandomTester(Object[] testUrlParts) {
 	   UrlValidator urlVal = new UrlValidator();
 	   
 	   //Create instance of Random class
@@ -608,15 +611,15 @@ protected void setUp() {
 	               System.out.println();
 	               printed = 0;
 	            }
-	   }   
+	       }   
+	   }
    }
-   }
 
 
 
 
-//Unit Test for URLs
-public void unitTest() { 
+   //Unit Test for URLs
+   public void testUnitTester() { 
 	   UrlValidator validator = new UrlValidator();
 	   try {
 		   FileReader fr = new FileReader("URLS.txt"); 
@@ -626,7 +629,7 @@ public void unitTest() {
 	       String s;
 
 	       if(br.ready()) {  
-	           System.out.println(br.readLine()); 
+	           //System.out.println(br.readLine()); 
 	           while ((s = br.readLine()) != null) {
 	 
 	        	   //read(char c[], int off, int len) 
@@ -648,7 +651,7 @@ public void unitTest() {
 	   } catch (IOException e) {
 		   e.printStackTrace();
 	   }
-} 
+   } 
 
 
 
@@ -758,3 +761,5 @@ public void unitTest() {
 
 
 }
+
+
